@@ -28,7 +28,7 @@
 				}
 				else 	die('Error: '.$e->getMessage().' Code: '.$e->getCode());
 			}
-			$this->createTable();
+			$this->createTable(); 
 			
 		}
 		public function createTable()
