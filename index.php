@@ -1,5 +1,5 @@
 <?php
-	
+	use \models\countries\country as country;
 	function AutoLoader(string $className)
 	{
 	echo $className.'<br>';
@@ -7,8 +7,8 @@
 	}
 	spl_autoload_register('AutoLoader');
 	
-	$France= new \Models\Countries\Country ("France","Paris",4444);
-	$France->save();
+	$Germany= new country ("Germany","Berlin",4444);
+	//$Germany->save();
 
-	var_dump(\Models\Countries\Country::getAll());
+	var_dump(country::getAll());
 ?>
