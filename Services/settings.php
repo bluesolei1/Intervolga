@@ -2,7 +2,7 @@
 	return [
 	  'db' =>[
 	   'host' => 'localhost',
-	   'dbname' => 'countriesdb',
+	   'dbname' => 'countriesdb', 
 	   'user' => 'root',
 	   'password' => '',
 	  ]

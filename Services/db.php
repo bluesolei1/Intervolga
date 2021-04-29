@@ -9,29 +9,22 @@
 			$options = (require __DIR__ .'\settings.php')['db'];
 			
 			try { 
-				$this->pdo = new \PDO('mysql:host='.$options['host'].
-				';dbname='.$options['dbname'],
-				$options['user'],
-				$options['password']);
+				$this->pdo = new \PDO('mysql:host='.$options['host'].';dbname='.$options['dbname'],$options['user'],$options['password']);
 			}
 			catch (\PDOException $e) {	
 				if ($e->getCode() == 1049)   // если нет базы данных, то создаем сначала её, потом таблицу
 				{
 					
-					$this->pdo = new \PDO('mysql:host='.$options['host'],
-					$options['user'],
-					$options['password']);
+					$this->pdo = new \PDO('mysql:host='.$options['host'],$options['user'],$options['password']);
 					$this->pdo->exec("CREATE DATABASE ".$options['dbname']);
 					$this->pdo->exec("USE ".$options['dbname']);
-					$this->createTable();
-					
+					$this->checkTableExists();	
 				}
 				else 	die('Error: '.$e->getMessage().' Code: '.$e->getCode());
 			}
-			$this->createTable(); 
-			
+			$this->checkTableExists();  
 		}
-		public function createTable()
+		public function checkTableExists()
 		{
 			//проверяем, если таблица существует, если нет, то создаем
 			$st = $this->pdo->prepare( "DESCRIBE `Countries");
