@@ -8,7 +8,7 @@
 			$this->path = $path;
 		}
 		
-		public function renderHtml (string $templateName, array $vars=[] )
+		public function renderHtml (string $templateName, array $vars=[])
 		{
 			extract($vars);
 			include $this->path . '/' . $templateName;

@@ -30,7 +30,8 @@
 		}
 		else 
 		{
-			var_dump ($errors);	
+			echo json_encode($errors);
+			die;
 		}
 	}
 	$countries = country::getAll();

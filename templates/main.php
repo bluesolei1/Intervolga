@@ -1,5 +1,10 @@
 <?php include_once __DIR__ ."./inc/header.php" ?>
 <div class="container">
+
+
+<div class="alert alert-danger" role="alert" id="errorDiv" >
+  This is a primary alert—check it out!
+</div>
 	<table class="table table-hover">
 		<thead>
 			<tr>

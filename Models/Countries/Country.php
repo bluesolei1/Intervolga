@@ -6,13 +6,13 @@
 		protected $id;
 		protected $countryName;
 		protected $countryCapital;
-		protected $population;
+		protected $countryPopulation;
 		
-		public function __construct (string $countryName, string  $countryCapital,int $population)
+		public function __construct (string $countryName, string  $countryCapital,int $countryPopulation)
 		{
 			$this ->countryName = $countryName;
 			$this ->countryCapital = $countryCapital;
-			$this ->population = $population;
+			$this ->countryPopulation = $countryPopulation;
 		}
 		
 		public function getCountryName() :string
@@ -23,9 +23,9 @@
 		{
 			return $this->countryCapital;
 		}
-		public function getPopulation() :int
+		public function getcountryPopulation() :int
 		{
-			return $this->population;
+			return $this->countryPopulation;
 		}
 		
 		public function setCountryName(string $countryName) 
@@ -36,18 +36,17 @@
 		{
 			$this->countryCapital = $countryCapital;
 		}
-		public function setPopulation(int $population) 
+		public function setcountryPopulation(int $countryPopulation) 
 		{
-			$this->population = $population;
+			$this->countryPopulation = $countryPopulation;
 		}		
 		public function save()
 		{
 			$db = db::getInstance();
-			$values = [$this->countryName, $this->countryCapital, $this->population];
-			$sql = "INSERT INTO Countries(countryName, countryCapital, population) values (?, ?, ?)";
+			$values = [$this->countryName, $this->countryCapital, $this->countryPopulation];
+			$sql = "INSERT INTO Countries(countryName, countryCapital, countryPopulation) values (?, ?, ?)";
 			$db->query ($sql, $values);
 			$this->id = $db->pdo->lastInsertId();
-			echo "saved<br>";
 		}
 		static function getAll() 
 		{
