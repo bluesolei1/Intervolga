@@ -3,7 +3,6 @@
 
 
 <div class="alert alert-danger" role="alert" id="errorDiv" >
-  This is a primary alert—check it out!
 </div>
 	<table class="table table-hover">
 		<thead>

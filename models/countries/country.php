@@ -32,11 +32,11 @@
 		{
 			$this->countryName = $countryName;
 		}
-		public function setcountryCapital(string $countryCapital)
+		public function setCountryCapital(string $countryCapital)
 		{
 			$this->countryCapital = $countryCapital;
 		}
-		public function setcountryPopulation(int $countryPopulation) 
+		public function setCountryPopulation(int $countryPopulation) 
 		{
 			$this->countryPopulation = $countryPopulation;
 		}		
