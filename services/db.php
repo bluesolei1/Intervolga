@@ -29,7 +29,7 @@
 				$this->pdo -> exec("CREATE TABLE IF NOT EXISTS  `Countries` (   
 				`id` int(11) NOT NULL  AUTO_INCREMENT PRIMARY KEY,
 				`countryName` varchar(255) NOT NULL,
-				`countryCapital` varchar(255) NOT NULL ,
+				`countryCapitalName` varchar(255) NOT NULL ,
 				`countryPopulation` int(255) NOT NULL )"); 
 			}
 		}

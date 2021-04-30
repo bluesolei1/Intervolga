@@ -6,7 +6,7 @@
 	</div>
 	<div class="col-12">
 		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Столица" name="countryCapital" id="countryCapital" title="Столица">
+			<input type="text" class="form-control" placeholder="Столица" name="countryCapitalName" id="countryCapitalName" title="Столица">
 		</div>
 	</div>
 	<div class="col-12">
@@ -28,7 +28,7 @@
 			$(this).hide();
 		});
 		$("#submit").click(function () {	
-			$.post( "../country/index.php", { countryName: $("#countryName").val(), countryCapital: $("#countryCapital").val(),countryPopulation: $("#countryPopulation").val()})
+			$.post( "../country/index.php", { countryName: $("#countryName").val(), countryCapitalName: $("#countryCapitalName").val(),countryPopulation: $("#countryPopulation").val()})
 			.done(function( data ) {
 				try {
 					errArray=$.parseJSON(data)

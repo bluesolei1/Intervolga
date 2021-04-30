@@ -15,7 +15,7 @@
 		{
 			$errors[] = 'Поле "Страна" должно содержать только буквы';
 		}
-		if (!preg_match("~^[a-zA-Za-яА-ЯёЁ]+$~",$_POST["countryCapital"]))
+		if (!preg_match("~^[a-zA-Za-яА-ЯёЁ]+$~",$_POST["countryCapitalName"]))
 		{
 			$errors[] = 'Поле "Столица" должно содержать только буквы';
 		} 
@@ -25,7 +25,7 @@
 		} 
 		if (empty($errors))
 		{
-			$country = new country ($_POST["countryName"],$_POST["countryCapital"],$_POST["countryPopulation"]);
+			$country = new country ($_POST["countryName"],$_POST["countryCapitalName"],$_POST["countryPopulation"]);
 			$country->save();
 		}
 		else 

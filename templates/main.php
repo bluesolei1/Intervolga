@@ -18,7 +18,7 @@
 			<tr>
 				<th scope="row"><?=$country->id?></th>
 				<td><?=$country->countryName ?></td>
-				<td><?=$country->countryCapital?></td>
+				<td><?=$country->countryCapitalName?></td>
 				<td><?=$country->countryPopulation ?></td>
 				<?php endforeach; ?>
 			</tr>	

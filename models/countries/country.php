@@ -5,13 +5,13 @@
 	{
 		protected $id;
 		protected $countryName;
-		protected $countryCapital;
+		protected $countryCapitalName;
 		protected $countryPopulation;
 		
-		public function __construct (string $countryName, string  $countryCapital,int $countryPopulation)
+		public function __construct (string $countryName, string  $countryCapitalName, int $countryPopulation)
 		{
 			$this ->countryName = $countryName;
-			$this ->countryCapital = $countryCapital;
+			$this ->countryCapitalName = $countryCapitalName;
 			$this ->countryPopulation = $countryPopulation;
 		}
 		
@@ -19,9 +19,9 @@
 		{
 			return $this->countryName;
 		}
-		public  function getcountryCapital() :string
+		public  function getcountryCapitalName() :string
 		{
-			return $this->countryCapital;
+			return $this->countryCapitalName;
 		}
 		public function getcountryPopulation() :int
 		{
@@ -32,9 +32,9 @@
 		{
 			$this->countryName = $countryName;
 		}
-		public function setCountryCapital(string $countryCapital)
+		public function setCountryCapital(string $countryCapitalName)
 		{
-			$this->countryCapital = $countryCapital;
+			$this->countryCapital = $countryCapitalName;
 		}
 		public function setCountryPopulation(int $countryPopulation) 
 		{
@@ -43,8 +43,8 @@
 		public function save()
 		{
 			$db = db::getInstance();
-			$values = [$this->countryName, $this->countryCapital, $this->countryPopulation];
-			$sql = "INSERT INTO Countries(countryName, countryCapital, countryPopulation) values (?, ?, ?)";
+			$values = [$this->countryName, $this->countryCapitalName, $this->countryPopulation];
+			$sql = "INSERT INTO Countries(countryName, countryCapitalName, countryPopulation) values (?, ?, ?)";
 			$db->query ($sql, $values);
 			$this->id = $db->pdo->lastInsertId();
 		}
