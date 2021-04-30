@@ -1,6 +1,6 @@
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../vendor/jquery-3.6.0.min.js"></script>
+<link href="../country/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="../country/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../country/vendor/jquery-3.6.0.min.js"></script>
 <div class="container">
 	<table class="table table-hover">
 		<thead>
@@ -12,28 +12,18 @@
 			</tr>
 		</thead>
 		<tbody>
+			<?php foreach ($countries as $country): ?>
 			<tr>
-				<th scope="row">1</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>@mdo</td>
-			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td>Jacob</td>
-				<td>Thornton</td>
-				<td>@fat</td>
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td colspan="2">Larry the Bird</td>
-				<td>@twitter</td>
-			</tr>
-			
-			
+				<th scope="row"><?=$country->id?></th>
+				<td><?=$country->countryName ?></td>
+				<td><?=$country->countryCapital?></td>
+				<td><?=$country->population ?></td>
+				<?php endforeach; ?>
+			</tr>	
 		</tbody>
+		
 	</table>
-	<form class="row row-cols-lg-auto g-3 align-items-center " id="edit" action="../index.php" method="POST" name="countryForm">
+	<form class="row row-cols-lg-auto g-3 align-items-center " id="edit" action="../country/index.php" method="POST" name="countryForm">
 		<div class="col-12">
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="Страна" name ="name">
@@ -69,6 +59,5 @@
 			$("#edit").slideDown();
 			$(this).hide();
 		});
-		
 	});
 </script>
