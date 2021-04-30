@@ -1,24 +1,21 @@
 <?php
-	namespace Services;
+	namespace services;
 	class db 
 	{
 		private static $instance;
 		public $pdo;
 		private function __construct()
 		{
-			$options = (require __DIR__ .'\settings.php')['db'];
-			
+			$options = (require __DIR__ .'\settings.php')['db'];	
 			try { 
 				$this->pdo = new \PDO('mysql:host='.$options['host'].';dbname='.$options['dbname'],$options['user'],$options['password']);
 			}
 			catch (\PDOException $e) {	
-				if ($e->getCode() == 1049)   // если нет базы данных, то создаем сначала её, потом таблицу
+				if ($e->getCode() == 1049)   // если нет базы данных, то создаем сначала её
 				{
-					
 					$this->pdo = new \PDO('mysql:host='.$options['host'],$options['user'],$options['password']);
 					$this->pdo->exec("CREATE DATABASE ".$options['dbname']);
 					$this->pdo->exec("USE ".$options['dbname']);
-					$this->checkTableExists();	
 				}
 				else 	die('Error: '.$e->getMessage().' Code: '.$e->getCode());
 			}
@@ -31,9 +28,23 @@
 			if ( !$st->execute() ) {   
 				$this->pdo -> exec("CREATE TABLE IF NOT EXISTS  `Countries` (   
 				`id` int(11) NOT NULL  AUTO_INCREMENT PRIMARY KEY,
-				`countryName` varchar(128) NOT NULL UNIQUE KEY,
-				`countryCapital` varchar(255) NOT NULL UNIQUE KEY,
+				`countryName` varchar(255) NOT NULL,
+				`countryCapital` varchar(255) NOT NULL ,
 				`population` int(255) NOT NULL )");
+			}
+		}
+		public function query(string $sql, array $params = []): ?array
+		{
+			$statement= $this->pdo->prepare($sql);
+			$result = $statement->execute($params);
+			
+			if($result === false)
+			{
+				return null;
+			}
+			else 
+			{
+				return $statement->fetchAll(\PDO::FETCH_CLASS);
 			}
 		}
 		public static function getInstance(): self 
@@ -44,5 +55,4 @@
 			return self::$instance;
 		}
 	}
-	$db = db::getInstance();
 ?>	

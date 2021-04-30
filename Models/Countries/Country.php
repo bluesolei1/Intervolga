@@ -1,46 +1,58 @@
 <?php
-	namespace Models\Countries;
-	use Services\db;
-	class Country
+	namespace models\countries;
+	use services\db;
+	class country
 	{
-		private $id;
-		private $countryName;
-		private $capitalName;
-		private $population;
+		protected $id;
+		protected $countryName;
+		protected $countryCapital;
+		protected $population;
 		
-		public function __construct ($countryName, $capitalName, $population)
+		public function __construct (string $countryName, string  $countryCapital,int $population)
 		{
 			$this ->countryName = $countryName;
-			$this ->capitalName = $capitalName;
+			$this ->countryCapital = $countryCapital;
 			$this ->population = $population;
 		}
 		
-		private function getCountryName() :string
+		public function getCountryName() :string
 		{
 			return $this->countryName;
 		}
-		private function getCapitalName() :string
+		public  function getcountryCapital() :string
 		{
-			return $this->capitalName;
+			return $this->countryCapital;
 		}
-		private function getPopulation() :int
+		public function getPopulation() :int
 		{
 			return $this->population;
 		}
+		
+		public function setCountryName(string $countryName) 
+		{
+			$this->countryName = $countryName;
+		}
+		public function setcountryCapital(string $countryCapital)
+		{
+			$this->countryCapital = $countryCapital;
+		}
+		public function setPopulation(int $population) 
+		{
+			$this->population = $population;
+		}		
 		public function save()
 		{
 			$db = db::getInstance();
-			$values = [$this->countryName, $this->capitalName, $this->population];
+			$values = [$this->countryName, $this->countryCapital, $this->population];
 			$sql = "INSERT INTO Countries(countryName, countryCapital, population) values (?, ?, ?)";
-			$statement = $db->pdo->prepare($sql);
-			$statement->execute($values);
+			$db->query ($sql, $values);
 			$this->id = $db->pdo->lastInsertId();
+			echo "saved<br>";
 		}
-		static function getAll () 
+		static function getAll() 
 		{
 			$db = db::getInstance();
-			$query = $db->pdo->query("SELECT * FROM Countries");
-			$result = $query->fetchAll(\PDO::FETCH_OBJ);
+			$result = $db->query("SELECT * FROM Countries");
 			return $result;
 		}
 		
