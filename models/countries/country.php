@@ -8,7 +8,7 @@
 		protected $countryCapitalName;
 		protected $countryPopulation;
 		
-		public function __construct (string $countryName, string  $countryCapitalName, int $countryPopulation)
+		public function __construct (string $countryName, string  $countryCapitalName, float $countryPopulation)
 		{
 			$this ->countryName = $countryName;
 			$this ->countryCapitalName = $countryCapitalName;
@@ -23,7 +23,7 @@
 		{
 			return $this->countryCapitalName;
 		}
-		public function getcountryPopulation() :int
+		public function getcountryPopulation() :float
 		{
 			return $this->countryPopulation;
 		}
@@ -35,7 +35,7 @@
 		public function setCountryCapital(string $countryCapitalName)
 		{
 			$this->countryCapital = $countryCapitalName;
-		}
+			}
 		public function setCountryPopulation(int $countryPopulation) 
 		{
 			$this->countryPopulation = $countryPopulation;

@@ -1,9 +1,9 @@
 <?php include_once __DIR__ ."./inc/header.php" ?>
 <div class="container">
-
-
-<div class="alert alert-danger" role="alert" id="errorDiv" >
-</div>
+	
+	
+	<div class="alert alert-danger" role="alert" id="errorDiv" >
+	</div>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -14,13 +14,15 @@
 			</tr>
 		</thead>
 		<tbody>
+			<?php if (isset($countries)): ?>
 			<?php foreach ($countries as $country): ?>
 			<tr>
 				<th scope="row"><?=$country->id?></th>
 				<td><?=$country->countryName ?></td>
 				<td><?=$country->countryCapitalName?></td>
-				<td><?=$country->countryPopulation ?></td>
+				<td><?=floatval($country->countryPopulation)  /*убираем ненужные 0  после точки*/?></td> 
 				<?php endforeach; ?>
+				<?php endif; ?>
 			</tr>	
 		</tbody>
 	</table>
