@@ -18,9 +18,9 @@
 			<?php foreach ($countries as $country): ?>
 			<tr>
 				<th scope="row"><?=$country->id?></th>
-				<td><?=$country->countryName ?></td>
-				<td><?=$country->countryCapitalName?></td>
-				<td><?=floatval($country->countryPopulation)  /*убираем ненужные 0  после точки*/?></td> 
+				<td ><?=$country->countryName ?></td>
+				<td ><?=$country->countryCapitalName?></td>
+				<td ><?=floatval($country->countryPopulation)  /*убираем ненужные 0  после точки*/?></td> 
 				<?php endforeach; ?>
 				<?php endif; ?>
 			</tr>	
