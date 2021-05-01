@@ -8,7 +8,7 @@
 		$("#submit").click(function () {	
 			$.post( "../country/index.php", { countryName: $("#countryName").val(), countryCapitalName: $("#countryCapitalName").val(),countryPopulation: $("#countryPopulation").val()})
 			.done(function( data ) {
-				try {  //если ответ на POST запрос валидный JSON, значит в форме были ошибки, выводим их
+				try {  //РµСЃР»Рё РѕС‚РІРµС‚ РЅР° POST Р·Р°РїСЂРѕСЃ РІР°Р»РёРґРЅС‹Р№ JSON, Р·РЅР°С‡РёС‚ РІ С„РѕСЂРјРµ Р±С‹Р»Рё РѕС€РёР±РєРё, РІС‹РІРѕРґРёРј РёС…
 					errArray=$.parseJSON(data)
 					$("#errorDiv").show();
 					$("#errorDiv").text("");
@@ -20,7 +20,7 @@
 							$("#"+key).addClass("is-invalid");
 						});
 					});
-					} catch(e) { // если ответ не JSON, значит все ОК, перегружаем страницу для обновления данных
+					} catch(e) { // РµСЃР»Рё РѕС‚РІРµС‚ РЅРµ JSON, Р·РЅР°С‡РёС‚ РІСЃРµ РћРљ, РїРµСЂРµРіСЂСѓР¶Р°РµРј СЃС‚СЂР°РЅРёС†Сѓ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РґР°РЅРЅС‹С…
 					location.reload(true);
 				}
 			});
