@@ -24,8 +24,8 @@
 		public function checkTableExists()
 		{
 			//проверяем, если таблица существует, если нет, то создаем
-			$st = $this->pdo->prepare( "DESCRIBE `Countries");
-			if ( !$st->execute() ) {   
+			$statement = $this->pdo->prepare( "DESCRIBE `Countries");
+			if ( !$statement->execute() ) {   
 				$this->pdo -> exec("CREATE TABLE IF NOT EXISTS  `Countries` (   
 				`id` int(11) NOT NULL  AUTO_INCREMENT PRIMARY KEY,
 				`countryName` varchar(255) NOT NULL,

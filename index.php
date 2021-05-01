@@ -8,20 +8,20 @@
 	
 	$view = new views\view ("./templates");
 	
-	if($_SERVER["REQUEST_METHOD"] == "POST")
+	if($_SERVER["REQUEST_METHOD"] == "POST") // получаем данные из формы, при наличии ошибок выдает json с их списком
 	{
 		$errors = [];
 		if (!preg_match("~^[a-zA-Za-яА-ЯёЁ]+$~",$_POST["countryName"]))
 		{
-			$errors[] = 'Поле "Страна" должно содержать только буквы';
+			$errors["countryName"] = 'Поле "Страна" должно содержать только буквы';
 		}
 		if (!preg_match("~^[a-zA-Za-яА-ЯёЁ]+$~",$_POST["countryCapitalName"]))
 		{
-			$errors[] = 'Поле "Столица" должно содержать только буквы';
+			$errors["countryCapitalName"] = 'Поле "Столица" должно содержать только буквы';
 		} 
 		if (!is_numeric($_POST["countryPopulation"]))
 		{
-			$errors[] = 'Поле "Население" должно содержать только цифры';
+			$errors["countryPopulation"] = 'Поле "Население" должно содержать только цифры';
 		} 
 		if (empty($errors))
 		{
@@ -30,7 +30,7 @@
 		}
 		else 
 		{
-			echo json_encode($errors);
+			echo json_encode($errors); // элемент => ошибка
 			die;
 		}
 	}

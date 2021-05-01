@@ -30,15 +30,17 @@
 		$("#submit").click(function () {	
 			$.post( "../country/index.php", { countryName: $("#countryName").val(), countryCapitalName: $("#countryCapitalName").val(),countryPopulation: $("#countryPopulation").val()})
 			.done(function( data ) {
-				try {
+				try {  //если ответ на POST запрос валидный JSON, значит в форме были ошибки, выводим их
 					errArray=$.parseJSON(data)
 					$("#errorDiv").show();
 					$("#errorDiv").text("");
 					$("html, body").animate({ scrollTop: 0 }, "slow")
+					$("#countryName, #countryCapitalName, #countryPopulation ").removeClass("is-invalid");
 					$.each(errArray, function(n, elem) {
-						$("#errorDiv").append("<li>"+elem+"</li>");     
+						$("#errorDiv").append("<li>"+elem+"</li>");    
+						$("#"+n).addClass("is-invalid");
 					});
-					} catch(e) {
+					} catch(e) { // если ответ не JSON, значит все ОК, перегружаем страницу для обновления данных
 					location.reload(true);
 				}
 			});
