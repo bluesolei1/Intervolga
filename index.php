@@ -11,15 +11,15 @@
 	if($_SERVER["REQUEST_METHOD"] == "POST") // получаем данные из формы, при наличии ошибок выдает json с их списком
 	{
 		$errors = [];
-		if (!preg_match("~^[a-zA-Za-яА-ЯёЁ]+( [a-zA-Za-яА-ЯёЁ]+)*$~",$_POST["countryName"]))
+		if ((!preg_match("~^[a-zA-Za-яА-ЯёЁ]+( [a-zA-Za-яА-ЯёЁ]+)*$~",$_POST["countryName"])) || (strlen($_POST["countryName"])>20))
 		{
 			$errors["countryName"] = 'Поле "Страна" должно содержать только буквы и пробелы';
 		}
-		if (!preg_match("~^[a-zA-Za-яА-ЯёЁ]+( [a-zA-Za-яА-ЯёЁ]+)*$~",$_POST["countryCapitalName"]))
+		if ((!preg_match("~^[a-zA-Za-яА-ЯёЁ]+( [a-zA-Za-яА-ЯёЁ]+)*$~",$_POST["countryCapitalName"])) || (strlen($_POST["countryCapitalName"])>20))
 		{
 			$errors["countryCapitalName"] = 'Поле "Столица" должно содержать только буквы и пробелы';
 		} 
-		if (!is_numeric($_POST["countryPopulation"]))
+		if ((!is_numeric($_POST["countryPopulation"])) || (strlen($_POST["countryPopulation"])>11))
 		{
 			$errors["countryPopulation"] = 'Поле "Население" должно содержать только цифры';
 		} 
