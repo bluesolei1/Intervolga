@@ -19,4 +19,3 @@
 <button type="button" class="btn btn-primary" id="addCountry">Добавить</button>
 </div>
 
-									

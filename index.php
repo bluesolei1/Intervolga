@@ -11,19 +11,21 @@
 	if($_SERVER["REQUEST_METHOD"] == "POST") // получаем данные из формы, при наличии ошибок выдает json с их списком
 	{
 		$errors = [];
-		if (!preg_match("~^[a-zA-Za-яА-ЯёЁ]+( [a-zA-Za-яА-ЯёЁ]+)*$~",$_POST["countryName"]))
+		$regexpString = "~^[a-zA-Za-яА-ЯёЁ]+( [a-zA-Za-яА-ЯёЁ]+)*$~"; // слова  RU + ENG плюс пробелы между ними
+		$maxWordLength = 120; 	// в шаблоне ввод ограничен 60 символами, но т.к. кириллица идет за два символа, то на стороне сервера ограничим 120
+		if (!preg_match($regexpString ,$_POST["countryName"]))
 		{
 			$errors[] = ["countryName"=>'Поле "Страна" должно содержать только буквы и пробелы'];
 		}
-		if (strlen($_POST["countryName"])>120)   // 120 т.к. кириллица считается за 2 символа
+		if (strlen($_POST["countryName"])>$maxWordLength)   
 		{
 			$errors[] = ["countryName"=>'Поле "Страна" может содержать максимум 60 символов'];
 		}
-		if (!preg_match("~^[a-zA-Za-яА-ЯёЁ]+( [a-zA-Za-яА-ЯёЁ]+)*$~",$_POST["countryCapitalName"]))
+		if (!preg_match($regexpString ,$_POST["countryCapitalName"]))
 		{
 			$errors[] = ["countryCapitalName"=>'Поле "Столица" должно содержать только буквы и пробелы'];
 		} 
-		if (strlen($_POST["countryCapitalName"])>120)
+		if (strlen($_POST["countryCapitalName"])>$maxWordLength)
 		{
 			$errors[] = ["countryCapitalName"=>'Поле "Столица" может содержать максимум 60 символов'];
 		}
@@ -35,14 +37,14 @@
 		{
 			$errors[] = ["countryPopulation"=>'Поле "Население" может содержать максимум 11 символов'];
 		}
-		if (empty($errors))
+		if (empty($errors))  // если ошибок нет, создаем страну и сохраняем в бд
 		{
-			$country = new country ($_POST["countryName"],$_POST["countryCapitalName"],$_POST["countryPopulation"]);
+			$country = new country ($_POST["countryName"], $_POST["countryCapitalName"], $_POST["countryPopulation"]);
 			$country->save();
-			}
-			else 
-			{
-			echo json_encode($errors); // элемент => ошибка
+		}
+		else 
+		{
+			echo json_encode($errors); // элемент ввода => ошибка
 			die;
 		}
 	}

@@ -1,6 +1,6 @@
 <?php
 	namespace views;
-	class View 
+	class view 
 	{
 		private $path;
 		public function __construct(string $path)

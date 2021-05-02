@@ -35,8 +35,8 @@
 		public function setCountryCapital(string $countryCapitalName)
 		{
 			$this->countryCapital = $countryCapitalName;
-			}
-		public function setCountryPopulation(int $countryPopulation) 
+		}
+		public function setCountryPopulation(float $countryPopulation) 
 		{
 			$this->countryPopulation = $countryPopulation;
 		}		
@@ -53,8 +53,7 @@
 			$db = db::getInstance();
 			$result = $db->query("SELECT * FROM Countries");
 			return $result;
-		}
-		
+		}		
 	}
 	
 ?>
