@@ -6,7 +6,7 @@ $( document ).ready(function() {
 		$(this).hide();
 	});
 	$("#submit").click(function () {	
-		$.post( "../country/index.php", { countryName: $("#countryName").val(), countryCapitalName: $("#countryCapitalName").val(),countryPopulation: $("#countryPopulation").val()})
+		$.post( "./index.php", { countryName: $("#countryName").val(), countryCapitalName: $("#countryCapitalName").val(),countryPopulation: $("#countryPopulation").val()})
 		.done(function( data ) {
 			try {  //если ответ на POST запрос валидный JSON, значит в форме были ошибки, выводим их
 				errArray=$.parseJSON(data)
