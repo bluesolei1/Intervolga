@@ -6,13 +6,19 @@
 	}
 	spl_autoload_register('AutoLoader');
 	
-	$view = new views\view ("./templates");
-	
+	function whitespaceTrim (string $string)
+	{
+		$string =preg_replace("~\s{2,}~" ," ",rtrim(ltrim($string))); // удаляем пробелы в начале и в конце строки, а также два и более пробела между словами
+		return $string;
+	}
 	if($_SERVER["REQUEST_METHOD"] == "POST") // получаем данные из формы, при наличии ошибок выдает json с их списком
 	{
 		$errors = [];
 		$regexpString = "~^[a-zA-Za-яА-ЯёЁ]+( [a-zA-Za-яА-ЯёЁ]+)*$~"; // слова  RU + ENG плюс пробелы между ними
 		$maxWordLength = 120; 	// в шаблоне ввод ограничен 60 символами, но т.к. кириллица идет за два символа, то на стороне сервера ограничим 120
+		$_POST["countryName"] = whitespaceTrim ($_POST["countryName"]);
+		$_POST["countryCapitalName"] = whitespaceTrim ($_POST["countryCapitalName"]);
+		$_POST["countryPopulation"] = whitespaceTrim ($_POST["countryPopulation"]);	
 		if (!preg_match($regexpString ,$_POST["countryName"]))
 		{
 			$errors[] = ["countryName"=>'Поле "Страна" должно содержать только буквы и пробелы'];
@@ -49,6 +55,7 @@
 		}
 	}
 	$countries = country::getAll();
+	$view = new views\view ("./templates");
 	$view->renderHtml("main.php",["countries"=>$countries]);
 	
 	

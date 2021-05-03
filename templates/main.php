@@ -15,7 +15,7 @@
 			<?php if (isset($countries)): ?>
 			<?php foreach ($countries as $country): ?>
 			<tr>
-				<th scope="row"><?=$country->id?></th>
+				<th scope="row"><?=intval($country->id)?></th>
 				<td><?=htmlspecialchars($country->countryName) ?></td>
 				<td><?=htmlspecialchars($country->countryCapitalName)?></td>
 				<td><?=floatval($country->countryPopulation)  /*убираем ненужные 0  после точки*/?></td> 
